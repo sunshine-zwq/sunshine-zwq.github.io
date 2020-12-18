@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://sunshine-zwq.gitee.io/2020/12/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-Future%E4%B8%8ECallable/</loc>
+    <lastmod>2020-12-18</lastmod>
+  </url>
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/2020/12/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-ThreadLocal/</loc>
+    <lastmod>2020-12-18</lastmod>
+  </url>
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/2020/12/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-CAS%E5%8E%9F%E7%90%86%E4%B8%8E%E5%8E%9F%E5%AD%90%E7%B1%BB/</loc>
+    <lastmod>2020-12-18</lastmod>
+  </url>
+  <url>
     <loc>https://sunshine-zwq.gitee.io/2020/12/17/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97/</loc>
     <lastmod>2020-12-17</lastmod>
   </url>
@@ -14,10 +26,6 @@
   </url>
   <url>
     <loc>https://sunshine-zwq.gitee.io/2020/12/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2020-12-16</lastmod>
-  </url>
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/2020/12/16/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-CAS%E5%8E%9F%E7%90%86/</loc>
     <lastmod>2020-12-16</lastmod>
   </url>
   <url>
