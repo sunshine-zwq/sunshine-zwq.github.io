@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://sunshine-zwq.gitee.io/2020/12/21/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-%E7%BA%BF%E7%A8%8B%E5%8D%8F%E4%BD%9C/</loc>
+    <lastmod>2020-12-21</lastmod>
+  </url>
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/2020/12/21/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-AQS/</loc>
+    <lastmod>2020-12-21</lastmod>
+  </url>
+  <url>
     <loc>https://sunshine-zwq.gitee.io/2020/12/18/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-Future%E4%B8%8ECallable/</loc>
     <lastmod>2020-12-18</lastmod>
   </url>
