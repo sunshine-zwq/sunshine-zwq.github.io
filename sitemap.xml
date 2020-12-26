@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sunshine-zwq.gitee.io/2020/12/26/jvm%E5%9F%BA%E7%A1%80-GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</loc>
+    
+    <lastmod>2020-12-26</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://sunshine-zwq.gitee.io/2020/12/26/jvm%E5%9F%BA%E7%A1%80-%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2020-12-26</lastmod>
@@ -263,7 +270,21 @@
   </url>
   
   <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/json/</loc>
+    <loc>https://sunshine-zwq.gitee.io/tags/git/</loc>
+    <lastmod>2020-12-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/gitee/</loc>
+    <lastmod>2020-12-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/github/</loc>
     <lastmod>2020-12-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -278,6 +299,27 @@
   
   <url>
     <loc>https://sunshine-zwq.gitee.io/tags/element-ui/</loc>
+    <lastmod>2020-12-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2020-12-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/jQuery/</loc>
+    <lastmod>2020-12-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/json/</loc>
     <lastmod>2020-12-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -305,27 +347,6 @@
   </url>
   
   <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/git/</loc>
-    <lastmod>2020-12-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/gitee/</loc>
-    <lastmod>2020-12-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/github/</loc>
-    <lastmod>2020-12-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sunshine-zwq.gitee.io/tags/js/</loc>
     <lastmod>2020-12-26</lastmod>
     <changefreq>daily</changefreq>
@@ -340,6 +361,13 @@
   </url>
   
   <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/jvm/</loc>
+    <lastmod>2020-12-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sunshine-zwq.gitee.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
     <lastmod>2020-12-26</lastmod>
     <changefreq>daily</changefreq>
@@ -347,28 +375,7 @@
   </url>
   
   <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2020-12-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/jQuery/</loc>
-    <lastmod>2020-12-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sunshine-zwq.gitee.io/tags/Node-js/</loc>
-    <lastmod>2020-12-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/jvm/</loc>
     <lastmod>2020-12-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -419,7 +426,7 @@
   </url>
   
   <url>
-    <loc>https://sunshine-zwq.gitee.io/categories/java/</loc>
+    <loc>https://sunshine-zwq.gitee.io/categories/git/</loc>
     <lastmod>2020-12-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -433,6 +440,20 @@
   </url>
   
   <url>
+    <loc>https://sunshine-zwq.gitee.io/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2020-12-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/categories/java/</loc>
+    <lastmod>2020-12-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sunshine-zwq.gitee.io/categories/ftp/</loc>
     <lastmod>2020-12-26</lastmod>
     <changefreq>daily</changefreq>
@@ -440,14 +461,7 @@
   </url>
   
   <url>
-    <loc>https://sunshine-zwq.gitee.io/categories/git/</loc>
-    <lastmod>2020-12-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <loc>https://sunshine-zwq.gitee.io/categories/jvm/</loc>
     <lastmod>2020-12-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -462,13 +476,6 @@
   
   <url>
     <loc>https://sunshine-zwq.gitee.io/categories/Node-js/</loc>
-    <lastmod>2020-12-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/categories/jvm/</loc>
     <lastmod>2020-12-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
