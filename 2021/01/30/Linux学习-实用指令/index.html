@@ -1,0 +1,588 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="毕业后就一直混迹在深圳的不知名攻城狮"><meta name="baidu-site-verification" content="code-osvb6rgMcu"><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.5"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.5"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><title>Linux学习-实用指令 | sunshine-zwq</title><meta name="generator" content="Hexo 4.2.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Linux学习-实用指令</h1><a id="logo" href="/.">sunshine-zwq</a><p class="description">Where there is a will, there is a way.</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Linux学习-实用指令</h1><div class="post-meta"><a href="/2021/01/30/Linux%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4/#comments" class="comment-count"></a><p><span class="date">2021/01/30</span><span><a href="/categories/linux/" class="category">linux</a></span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h2 id="1-运行级别"><a href="#1-运行级别" class="headerlink" title="1.运行级别"></a>1.运行级别</h2><h3 id="1-1-基本介绍"><a href="#1-1-基本介绍" class="headerlink" title="1.1 基本介绍"></a>1.1 基本介绍</h3><p>运行级别说明：</p>
+<ul>
+<li>0：关机</li>
+<li>1：单用户【找回丢失密码】，相当于 windows 的安全模式，主要用于系统修复</li>
+<li>2：多用户状态没有网络服务</li>
+<li>3：多用户状态有网络服务</li>
+<li>4：系统未使用保留给用户</li>
+<li>5：图形界面</li>
+<li>6：系统重启</li>
+</ul>
+<p>常用运行级别是3和5 ，要修改默认的运行级别可修改文件 /etc/inittab 的 id:5:initdefault: 这一行中的数字</p>
+<p><img src="https://sunshine-zwq.gitee.io/blog-pic/blogPics/2021/0128/019.png" alt=""></p>
+<h3 id="1-2-切换运行级别"><a href="#1-2-切换运行级别" class="headerlink" title="1.2 切换运行级别"></a>1.2 切换运行级别</h3><p>可以通过 init 来切换不同的运行级别，比如从 5 切换到 3</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 3</span><br></pre></td></tr></table></figure>
+
+<p>命令执行后，系统会重启，进入无界面的命令窗口。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 5</span><br></pre></td></tr></table></figure>
+
+<p>命令执行后，系统会重启，回到有界面的系统桌面。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 0</span><br></pre></td></tr></table></figure>
+
+<p>命令执行后，系统会关机。</p>
+<h3 id="1-3-典型案例"><a href="#1-3-典型案例" class="headerlink" title="1.3 典型案例"></a>1.3 典型案例</h3><p>Q：如果不小心忘记 root 密码，如何找回？</p>
+<p>A： 进入到 单用户模式，然后修改 root 密码。因为进入单用户模式，root 不需要密码就可以登录。</p>
+<p>操作步骤：</p>
+<p>（1）开机-&gt;出现下面引导时按回车键</p>
+<p><img src="https://sunshine-zwq.gitee.io/blog-pic/blogPics/2021/0128/020.png" alt=""></p>
+<p>（2）出现如下页面时，输入 e </p>
+<p><img src="https://sunshine-zwq.gitee.io/blog-pic/blogPics/2021/0128/021.png" alt=""></p>
+<p>（3）选择第二行（编辑内核），再输入 e</p>
+<p><img src="https://sunshine-zwq.gitee.io/blog-pic/blogPics/2021/0128/022.png" alt=""></p>
+<p>（4）输入 1，按回车键</p>
+<p><img src="https://sunshine-zwq.gitee.io/blog-pic/blogPics/2021/0128/023.png" alt=""></p>
+<p>（5）输入 b，就会进入单用户模式</p>
+<p><img src="https://sunshine-zwq.gitee.io/blog-pic/blogPics/2021/0128/024.png" alt=""></p>
+<p>（6）使用 passwd 指令修改 root 密码，修改成功后 reboot 重启即可。</p>
+<p><img src="https://sunshine-zwq.gitee.io/blog-pic/blogPics/2021/0128/025.png" alt=""></p>
+<h2 id="2-帮助指令"><a href="#2-帮助指令" class="headerlink" title="2.帮助指令"></a>2.帮助指令</h2><blockquote>
+<p>当我们对某个指令不熟悉时，我们可以使用 Linux 提供的帮助指令来了解这个指令的使用方法。</p>
+</blockquote>
+<h3 id="2-1-man指令"><a href="#2-1-man指令" class="headerlink" title="2.1 man指令"></a>2.1 man指令</h3><ul>
+<li><p>基本语法：<code>man [命令或配置文件]</code> （功能描述：获得帮助信息）</p>
+</li>
+<li><p>应用案例：查看 ls 命令的帮助信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man ls</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="2-2-help指令"><a href="#2-2-help指令" class="headerlink" title="2.2 help指令"></a>2.2 help指令</h3><ul>
+<li><p>基本语法：<code>help 命令</code>（功能描述：获得 shell 内置命令的帮助信息）</p>
+</li>
+<li><p>应用案例：查看 cd 命令的帮助信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help cd</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="3-文件目录类"><a href="#3-文件目录类" class="headerlink" title="3.文件目录类"></a>3.文件目录类</h2><h3 id="3-1-pwd指令"><a href="#3-1-pwd指令" class="headerlink" title="3.1 pwd指令"></a>3.1 pwd指令</h3><ul>
+<li><p>基本语法：<code>pwd</code> (功能描述：显示当前工作目录的绝对路径)</p>
+</li>
+<li><p>应用案例：</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/026.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-2-ls指令"><a href="#3-2-ls指令" class="headerlink" title="3.2 ls指令"></a>3.2 ls指令</h3><ul>
+<li><p>基本语法：<code>ls [选项] [目录或是文件]</code></p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-a ：显示当前目录所有的文件和目录，包括隐藏的。</li>
+<li>-l ：以列表的方式显示信息</li>
+</ul>
+</li>
+<li><p>应用案例：查看当前目录的所有内容信息</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/027.png" alt=""></p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/028.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-3-cd指令"><a href="#3-3-cd指令" class="headerlink" title="3.3 cd指令"></a>3.3 cd指令</h3><ul>
+<li><p>基本语法：<code>cd [参数]</code> (功能描述：切换到指定目录)</p>
+</li>
+<li><p>常用参数：</p>
+<ul>
+<li><code>cd ~</code>或<code>cd</code>：回到自己的家目录</li>
+<li><code>cd ..</code>：回到当前目录的上一级目录</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>使用绝对路径切换到 root 目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /root</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>假设当前在 /usr/lib 目录，使用相对目录到 /root 目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ../../root</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-4-mkdir指令"><a href="#3-4-mkdir指令" class="headerlink" title="3.4 mkdir指令"></a>3.4 mkdir指令</h3><blockquote>
+<p>mkdir 指令用于创建目录(make directory)</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>mkdir [选项] 要创建的目录名</code></p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-p ：创建多级目录</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>创建一个目录 /home/dog</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/029.png" alt=""></p>
+</li>
+<li><p>创建多级目录 /home/animal/tiger</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/030.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-5-rmdir指令"><a href="#3-5-rmdir指令" class="headerlink" title="3.5 rmdir指令"></a>3.5 rmdir指令</h3><blockquote>
+<p>rmdir 指令用于删除空目录</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>rmdir [选项] 要删除的空目录</code></p>
+</li>
+<li><p>应用案例</p>
+<ul>
+<li><p>删除一个空目录 /home/dog</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir /home/dog</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>使用细节：rmdir 删除的是空目录，如果目录下有内容时是无法删除的。如果需要删除非空目录，需要使用 <code>rm -rf 要删除的目录</code></p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/031.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-6-touch指令"><a href="#3-6-touch指令" class="headerlink" title="3.6 touch指令"></a>3.6 touch指令</h3><blockquote>
+<p>touch 指令用于创建空文件</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>touch 文件名</code></p>
+</li>
+<li><p>应用实例：创建一个空文件 hello.txt</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch hello.txt</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="3-7-cp指令"><a href="#3-7-cp指令" class="headerlink" title="3.7 cp指令"></a>3.7 cp指令</h3><blockquote>
+<p>cp 指令用于拷贝文件到指定目录</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>cp [选项] source dest</code></p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-r ：递归复制整个文件夹</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>将 /home/aaa.txt 拷贝到 /home/bbb 目录下[拷贝单个文件]</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/032.png" alt=""></p>
+</li>
+<li><p>将 /home/test 整个目录递归拷贝到 /home/zwj 目录</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/033.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>使用细节：强制覆盖不提示的方法：<code>\cp</code></p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/034.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-8-rm指令"><a href="#3-8-rm指令" class="headerlink" title="3.8 rm指令"></a>3.8 rm指令</h3><blockquote>
+<p>rm 指令用于移除【删除】文件或目录</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>rm [选项] 要删除的文件或目录</code></p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-r ：递归删除整个文件夹</li>
+<li>-f ：强制删除不提示</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>将 /home/aaa.txt 删除</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /home/aaa.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>递归删除整个文件夹 /home/bbb</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm rf /home/bbb</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-9-mv指令"><a href="#3-9-mv指令" class="headerlink" title="3.9 mv指令"></a>3.9 mv指令</h3><blockquote>
+<p>mv 指令用于移动文件/目录，或重命名</p>
+</blockquote>
+<ul>
+<li><p>基本语法：</p>
+<ul>
+<li><code>mv oldNameFile newNameFile</code> (功能描述：重命名)</li>
+<li><code>mv /temp/movefile /targetFolder</code>  (功能描述：移动文件)</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>将 /home/aaa.txt 文件，重新命名为 pig.txt</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/035.png" alt=""></p>
+</li>
+<li><p>将 /home/pig.txt 文件 移动到 /root 目录下</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/036.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-10-cat指令"><a href="#3-10-cat指令" class="headerlink" title="3.10 cat指令"></a>3.10 cat指令</h3><blockquote>
+<p>cat 指令用于查看文件内容，是以只读的方式打开。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>cat [选项] 要查看的文件名</code></p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-n ：显示行号</li>
+</ul>
+</li>
+<li><p>应用案例：查看 /etc/profile 文件内容，并显示行号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -n /etc/profile | more</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用细节：cat 只能浏览文件，而不能修改文件，为了浏览方便，一般会带上 管道命令 | more</p>
+</li>
+</ul>
+<h3 id="3-11-more指令"><a href="#3-11-more指令" class="headerlink" title="3.11 more指令"></a>3.11 more指令</h3><blockquote>
+<p>more 指令是一个基于 VI 编辑器的文本过滤器， 它以全屏幕的方式按页显示文本文件的内容。more指令中内置了若干快捷键。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>more 要查看的文件名</code></p>
+</li>
+<li><p>应用案例：用 more 查看 /etc/profile</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more /etc/profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>快捷键</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/037.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-12-less指令"><a href="#3-12-less指令" class="headerlink" title="3.12 less指令"></a>3.12 less指令</h3><blockquote>
+<p>less 指令用来分屏查看文件内容，它的功能与 more 指令类似，但是比 more 指令更加强大，支持各种显示终端。less 指令在显示文件内容时，并不是一次将整个文件加载之后才显示，而是根据显示需要加载内容，对于显示大型文件具有较高的效率。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>less 要查看的文件名</code></p>
+</li>
+<li><p>应用案例： 采用 less 查看一个大文件文件 longtext.txt</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less longtext.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>快捷键：</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/038.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-13-gt-指令和-gt-gt-指令"><a href="#3-13-gt-指令和-gt-gt-指令" class="headerlink" title="3.13 &gt;指令和&gt;&gt;指令"></a>3.13 &gt;指令和&gt;&gt;指令</h3><blockquote>
+<p>&gt;  输出重定向 : 会将原来的文件的内容覆盖</p>
+<p>&gt;&gt;  追加：不会覆盖原来文件的内容，而是追加到文件的尾部。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：</p>
+<ul>
+<li><p><code>ls -l &gt;文件</code> （功能描述：列表的内容写入文件 a.txt 中（覆盖写），说明：<code>ls -l &gt; a.txt</code> , 将 ls -l 的显示的内容覆盖写入到 a.txt 文件，如果该文件不存在，就创建该文件。）</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/039.png" alt=""></p>
+</li>
+<li><p><code>ls -al &gt;&gt;文件</code> （功能描述：列表的内容追加到文件 aa.txt 的末尾）</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/040.png" alt=""></p>
+</li>
+<li><p><code>cat 文件 1 &gt; 文件 2</code> （功能描述：将文件 1 的内容覆盖到文件 2）</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/041.png" alt=""></p>
+</li>
+<li><p><code>echo &quot;内容&quot; &gt;&gt; 文件</code></p>
+</li>
+</ul>
+</li>
+<li><p>应用案例：将当前日历信息 追加到 /home/mycal 文件中</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/042.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-14-echo指令"><a href="#3-14-echo指令" class="headerlink" title="3.14 echo指令"></a>3.14 echo指令</h3><blockquote>
+<p>echo 指令用于输出内容到控制台</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>echo [选项] [输出内容]</code></p>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>使用 echo 指令输出环境变量，输出当前的环境路径。</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/043.png" alt=""></p>
+</li>
+<li><p>echo 指令输出 hello, world</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo "hello, world"</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-15-head指令"><a href="#3-15-head指令" class="headerlink" title="3.15 head指令"></a>3.15 head指令</h3><blockquote>
+<p>head 用于显示文件的开头部分内容，默认情况下 head 指令显示文件的前 10 行内容</p>
+</blockquote>
+<ul>
+<li><p>基本语法：</p>
+<ul>
+<li><code>head 文件名</code>（功能描述：查看文件头 10 行内容）</li>
+<li><code>head -n 5 文件名</code> （功能描述：查看文件头 5 行内容，5 可以是任意行数）</li>
+</ul>
+</li>
+<li><p>应用案例：查看/etc/profile 的前面 5 行代码</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/044.png" alt=""></p>
+</li>
+</ul>
+<h3 id="3-16-tail指令"><a href="#3-16-tail指令" class="headerlink" title="3.16 tail指令"></a>3.16 tail指令</h3><blockquote>
+<p>tail 用于输出文件中尾部的内容，默认情况下 tail 指令显示文件的后 10 行内容。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：</p>
+<ul>
+<li><code>tail 文件名</code> （功能描述：查看文件后 10 行内容）</li>
+<li><code>tail -n 5 文件名</code>（功能描述：查看文件后 5 行内容，5 可以是任意行数）</li>
+<li><code>tail -f 文件名</code> （功能描述：实时追踪该文档的所有更新，工作经常使用）</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>查看/etc/profile 最后 5 行的代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -n 5 /etc/profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实时监控 mydate.txt , 看看到文件有变化时，是否看到，实时的追加日期</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/045.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-17-ln指令"><a href="#3-17-ln指令" class="headerlink" title="3.17 ln指令"></a>3.17 ln指令</h3><blockquote>
+<p>软链接也叫符号链接，类似于 windows 里的快捷方式，主要存放了链接其他文件的路径</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>ln -s [原文件或目录] [软链接名]</code> （功能描述：给原文件创建一个软链接）</p>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>在/home 目录下创建一个软连接 linkToRoot，连接到 /root 目录</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/046.png" alt=""></p>
+</li>
+<li><p>删除软连接 linkToRoot</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/047.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>使用细节：当我们使用 pwd 指令查看目录时，仍然看到的是软链接所在目录。</p>
+</li>
+</ul>
+<h3 id="3-18-history指令"><a href="#3-18-history指令" class="headerlink" title="3.18 history指令"></a>3.18 history指令</h3><blockquote>
+<p>查看已经执行过历史命令,也可以执行历史指令</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>history</code> （功能描述：查看已经执行过历史命令）</p>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>显示所有的历史命令</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/048.png" alt=""></p>
+</li>
+<li><p>显示最近使用过的 10 个指令</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/049.png" alt=""></p>
+</li>
+<li><p>执行历史编号为 178 的指令</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/050.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-时间日期类"><a href="#4-时间日期类" class="headerlink" title="4.时间日期类"></a>4.时间日期类</h2><h3 id="4-1-date指令-显示当前日期"><a href="#4-1-date指令-显示当前日期" class="headerlink" title="4.1  date指令-显示当前日期"></a>4.1  date指令-显示当前日期</h3><ul>
+<li><p>基本语法：</p>
+<ul>
+<li><code>date</code>（功能描述：显示当前时间）</li>
+<li><code>date +%Y</code> （功能描述：显示当前年份）</li>
+<li><code>date +%m</code> （功能描述：显示当前月份）</li>
+<li><code>date +%d</code> （功能描述：显示当前是哪一天）</li>
+<li><code>date &quot;+%Y-%m-%d %H:%M:%S&quot;</code>（功能描述：显示年月日时分秒）</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>显示当前时间信息</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/051.png" alt=""></p>
+</li>
+<li><p>显示当前时间年月日</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/052.png" alt=""></p>
+</li>
+<li><p>显示当前时间年月日时分秒</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/053.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-2-date指令-设置日期"><a href="#4-2-date指令-设置日期" class="headerlink" title="4.2 date指令-设置日期"></a>4.2 date指令-设置日期</h3><ul>
+<li><p>基本语法：<code>date -s 字符串时间</code></p>
+</li>
+<li><p>应用案例：设置系统当前时间，比如设置成 2018-10-10 11:22:22</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/054.png" alt=""></p>
+</li>
+</ul>
+<h3 id="4-3-cal指令"><a href="#4-3-cal指令" class="headerlink" title="4.3 cal指令"></a>4.3 cal指令</h3><blockquote>
+<p>cal 指令用于查看日历</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>cal [选项]</code>（功能描述：不加选项，显示本月日历）</p>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>显示当前日历</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/055.png" alt=""></p>
+</li>
+<li><p>显示 2020 年日历</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/056.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-搜索查找类"><a href="#5-搜索查找类" class="headerlink" title="5.搜索查找类"></a>5.搜索查找类</h2><h3 id="5-1-find指令"><a href="#5-1-find指令" class="headerlink" title="5.1 find指令"></a>5.1 find指令</h3><blockquote>
+<p>find 指令将从指定目录向下递归地遍历其各个子目录，将满足条件的文件或者目录显示在终端。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>find [搜索范围] [选项]</code></p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-name：按照指定的文件名查找模式查找文件</li>
+<li>-user：查找属于指定用户名所有文件</li>
+<li>-size：按照指定的文件大小查找文件（+n 大于 -n 小于 n 等于）</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>按文件名：根据名称查找/home 目录下的 hello.txt 文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /home -name hello.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按拥有者：查找/opt 目录下，用户名称为 nobody 的文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /opt -user nobody</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找整个 linux 系统下大于 20m 的文件（+n 大于 -n 小于 n 等于）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find / -size +20M</span><br><span class="line">find / -size -20M</span><br><span class="line">find / -size 20M</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询 / 目录下，所有 .txt 的文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name *.txt</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-2-locate指令"><a href="#5-2-locate指令" class="headerlink" title="5.2 locate指令"></a>5.2 locate指令</h3><blockquote>
+<p>locate 指令可以快速定位文件路径。locate 指令利用事先建立的系统中所有文件名称及路径的locate 数据库实现快速定位给定的文件。Locate 指令无需遍历整个文件系统，查询速度较快。为了保证查询结果的准确度，管理员必须定期更新 locate 数据库。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>locate 搜索文件</code></p>
+</li>
+<li><p>特别说明：由于 locate 指令基于数据库进行查询，所以<strong>第一次运行前，必须使用 updatedb 指令创建 locate 数据库</strong>。</p>
+</li>
+<li><p>应用案例：请使用 locate 指令快速定位 hello.txt 文件所在目录</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/057.png" alt=""></p>
+</li>
+</ul>
+<h3 id="5-3-grep指令和管道符号"><a href="#5-3-grep指令和管道符号" class="headerlink" title="5.3 grep指令和管道符号 |"></a>5.3 grep指令和管道符号 |</h3><blockquote>
+<p>grep 过滤查找 ， 管道符，“|”，表示将前一个命令的处理结果输出传递给后面的命令处理。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>grep [选项] 查找内容 源文件</code></p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-n：显示匹配行及行号</li>
+<li>-i：忽略字母大小写</li>
+</ul>
+</li>
+<li><p>应用案例：请在 hello.txt 文件中，查找 “yes” 所在行，并且显示行号</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/058.png" alt=""></p>
+</li>
+</ul>
+<h2 id="6-压缩和解压类"><a href="#6-压缩和解压类" class="headerlink" title="6.压缩和解压类"></a>6.压缩和解压类</h2><h3 id="6-1-gzip-gunzip指令"><a href="#6-1-gzip-gunzip指令" class="headerlink" title="6.1 gzip/gunzip指令"></a>6.1 gzip/gunzip指令</h3><blockquote>
+<p>gzip 用于压缩文件， gunzip 用于解压</p>
+</blockquote>
+<ul>
+<li><p>基本语法：</p>
+<ul>
+<li><code>gzip 文件名</code> （功能描述：压缩文件，只能将文件压缩为*.gz 文件）</li>
+<li><code>gunzip 文件名.gz</code> （功能描述：解压缩文件命令）</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>gzip 压缩， 将 /home 下的 hello.txt 文件进行压缩</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/059.png" alt=""></p>
+</li>
+<li><p>gunzip 压缩， 将 /home 下的 hello.txt.gz 文件进行解压缩</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/060.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>细节说明：<strong>当我们使用 gzip 对文件进行压缩后，不会保留原来的文件。</strong></p>
+</li>
+</ul>
+<h3 id="6-2-zip-unzip指令"><a href="#6-2-zip-unzip指令" class="headerlink" title="6.2 zip/unzip指令"></a>6.2 zip/unzip指令</h3><blockquote>
+<p>zip 用于压缩文件， unzip 用于解压</p>
+</blockquote>
+<ul>
+<li><p>基本语法：</p>
+<ul>
+<li><code>zip [选项] XXX.zip 将要压缩的内容</code>（功能描述：压缩文件和目录的命令）</li>
+<li><code>unzip [选项] XXX.zip</code> （功能描述：解压缩文件）</li>
+</ul>
+</li>
+<li><p>zip 常用选项：</p>
+<ul>
+<li>-r：递归压缩，即压缩目录</li>
+</ul>
+</li>
+<li><p>unzip 常用选项：</p>
+<ul>
+<li>-d&lt;目录&gt; ：指定解压后文件的存放目录</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>将 /home 下的 所有文件进行压缩成 mypackage.zip</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/061.png" alt=""></p>
+</li>
+<li><p>将 mypackge.zip 解压到 /opt/tmp 目录下（tmp目录如不存在会自动创建）</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/062.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-3-tar指令"><a href="#6-3-tar指令" class="headerlink" title="6.3 tar指令"></a>6.3 tar指令</h3><blockquote>
+<p>tar 指令是打包指令，最后打包后的文件是 .tar.gz 的文件</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>tar [选项] XXX.tar.gz 打包的内容</code> (功能描述：打包目录，压缩后的文件格式.tar.gz)</p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-c：产生 .tar 打包文件</li>
+<li>-v：显示详细信息</li>
+<li>-f：指定压缩后的文件名</li>
+<li>-z：打包同时压缩</li>
+<li>-x：解包 .tar 文件</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>压缩多个文件，将 /home/a1.txt 和 /home/a2.txt 压缩成 a.tar.gz</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/063.png" alt=""></p>
+</li>
+<li><p>将/home 的文件夹 压缩成 myhome.tar.gz</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/064.png" alt=""></p>
+</li>
+<li><p>将 a.tar.gz 解压到当前目录</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/065.png" alt=""></p>
+</li>
+<li><p>将 myhome.tar.gz 解压到 /opt/ 目录下</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0128/066.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>使用细节：指定解压到的那个目录，事先要存在才能成功，否则会报错。</p>
+</li>
+</ul>
+</div><div class="post-copyright"><blockquote><p>原文作者: zwq</p><p>原文链接: <a href="https://sunshine-zwq.gitee.io/2021/01/30/Linux学习-实用指令/">https://sunshine-zwq.gitee.io/2021/01/30/Linux学习-实用指令/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/tags/linux/">linux</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2021/01/29/Linux%E5%AD%A6%E4%B9%A0-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" class="next">Linux学习-用户管理</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-运行级别"><span class="toc-text">1.运行级别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-基本介绍"><span class="toc-text">1.1 基本介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-切换运行级别"><span class="toc-text">1.2 切换运行级别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-典型案例"><span class="toc-text">1.3 典型案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-帮助指令"><span class="toc-text">2.帮助指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-man指令"><span class="toc-text">2.1 man指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-help指令"><span class="toc-text">2.2 help指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-文件目录类"><span class="toc-text">3.文件目录类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-pwd指令"><span class="toc-text">3.1 pwd指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ls指令"><span class="toc-text">3.2 ls指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-cd指令"><span class="toc-text">3.3 cd指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-mkdir指令"><span class="toc-text">3.4 mkdir指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-rmdir指令"><span class="toc-text">3.5 rmdir指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-touch指令"><span class="toc-text">3.6 touch指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-cp指令"><span class="toc-text">3.7 cp指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-rm指令"><span class="toc-text">3.8 rm指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-9-mv指令"><span class="toc-text">3.9 mv指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-10-cat指令"><span class="toc-text">3.10 cat指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-11-more指令"><span class="toc-text">3.11 more指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-12-less指令"><span class="toc-text">3.12 less指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-13-gt-指令和-gt-gt-指令"><span class="toc-text">3.13 &gt;指令和&gt;&gt;指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-14-echo指令"><span class="toc-text">3.14 echo指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-15-head指令"><span class="toc-text">3.15 head指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-16-tail指令"><span class="toc-text">3.16 tail指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-17-ln指令"><span class="toc-text">3.17 ln指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-18-history指令"><span class="toc-text">3.18 history指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-时间日期类"><span class="toc-text">4.时间日期类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-date指令-显示当前日期"><span class="toc-text">4.1  date指令-显示当前日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-date指令-设置日期"><span class="toc-text">4.2 date指令-设置日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-cal指令"><span class="toc-text">4.3 cal指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-搜索查找类"><span class="toc-text">5.搜索查找类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-find指令"><span class="toc-text">5.1 find指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-locate指令"><span class="toc-text">5.2 locate指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-grep指令和管道符号"><span class="toc-text">5.3 grep指令和管道符号 |</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-压缩和解压类"><span class="toc-text">6.压缩和解压类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-gzip-gunzip指令"><span class="toc-text">6.1 gzip&#x2F;gunzip指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-zip-unzip指令"><span class="toc-text">6.2 zip&#x2F;unzip指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-tar指令"><span class="toc-text">6.3 tar指令</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/01/30/Linux%E5%AD%A6%E4%B9%A0-%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4/">Linux学习-实用指令</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/29/Linux%E5%AD%A6%E4%B9%A0-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/">Linux学习-用户管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/28/Linux%E5%AD%A6%E4%B9%A0-%E5%85%B3%E6%9C%BA%E9%87%8D%E5%90%AF%E5%92%8C%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%B3%A8%E9%94%80/">Linux学习-关机重启和用户登录注销</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/28/Linux%E5%AD%A6%E4%B9%A0-vi%E5%92%8Cvim%E7%BC%96%E8%BE%91%E5%99%A8/">Linux学习-vi和vim编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/28/Linux%E5%AD%A6%E4%B9%A0-%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95Linux%E7%B3%BB%E7%BB%9F/">Linux学习-远程登录Linux系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/27/Linux%E5%AD%A6%E4%B9%A0-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/">Linux学习-文件系统目录结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/27/Linux%E5%AD%A6%E4%B9%A0-VMware%E5%AE%89%E8%A3%85CentOS6/">Linux学习-VMware安装CentOS6</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/07/Dubbo%E5%85%A5%E9%97%A8/">Dubbo入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/01/jvm%E9%AB%98%E7%BA%A7-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">jvm高级-常见问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/30/Java%E4%B8%AD%E7%9A%84%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E8%99%9A%E5%BC%95%E7%94%A8/">Java中的强引用、软引用、弱引用、虚引用</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dubbo/">Dubbo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">Java并发编程</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ftp/">ftp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jvm/">jvm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/tags/jdk/" style="font-size: 15px;">jdk</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 15px;">并发编程</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/gitee/" style="font-size: 15px;">gitee</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/element-ui/" style="font-size: 15px;">element-ui</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/json/" style="font-size: 15px;">json</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15px;">面试</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/js%E6%A8%A1%E5%9D%97%E5%8C%96/" style="font-size: 15px;">js模块化</a> <a href="/tags/gc/" style="font-size: 15px;">gc</a> <a href="/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 15px;">正则表达式</a> <a href="/tags/Node-js/" style="font-size: 15px;">Node.js</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15px;">工具</a> <a href="/tags/ECMAScript/" style="font-size: 15px;">ECMAScript</a> <a href="/tags/java8/" style="font-size: 15px;">java8</a> <a href="/tags/Lambda/" style="font-size: 15px;">Lambda</a> <a href="/tags/Stream/" style="font-size: 15px;">Stream</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://github.com/sunshine-zwq" title="我的Github" target="_blank">我的Github</a><ul></ul><a href="https://blog.csdn.net/zwq1105" title="我的CSDN博客" target="_blank">我的CSDN博客</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/." rel="nofollow">zwq.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/js/search.json.js?v=2.0.5"></script><div id="fullscreen-img" class="hide"><span class="close"></span></div><script type="text/javascript" src="/js/imgview.js?v=2.0.5" async></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.5" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script></body></html>
