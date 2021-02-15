@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="毕业后就一直混迹在深圳的不知名攻城狮"><meta name="baidu-site-verification" content="code-osvb6rgMcu"><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.5"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.5"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><title>Linux学习-进程与服务 | sunshine-zwq</title><meta name="generator" content="Hexo 4.2.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Linux学习-进程与服务</h1><a id="logo" href="/.">sunshine-zwq</a><p class="description">Where there is a will, there is a way.</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Linux学习-进程与服务</h1><div class="post-meta"><a href="/2021/02/05/Linux%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1/#comments" class="comment-count"></a><p><span class="date">2021/02/05</span><span><a href="/categories/linux/" class="category">linux</a></span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h2 id="1-进程的基本介绍"><a href="#1-进程的基本介绍" class="headerlink" title="1.进程的基本介绍"></a>1.进程的基本介绍</h2><p>1) 在 LINUX 中，每个执行的程序（代码）都称为一个进程。每一个进程都分配一个 ID 号。<br>2) 每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程，例如 www 服务器。<br>3) 每个进程都可能以两种方式存在的。前台与后台，所谓前台进程就是用户目前的屏幕上可以进行操作的。后台进程则是实际在操作，但由于屏幕上无法看到的进程，通常使用后台方式执行。<br>4) 一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中，直到关机才结束。</p>
+<h2 id="2-显示系统执行的进程"><a href="#2-显示系统执行的进程" class="headerlink" title="2.显示系统执行的进程"></a>2.显示系统执行的进程</h2><h3 id="2-1-说明"><a href="#2-1-说明" class="headerlink" title="2.1 说明"></a>2.1 说明</h3><p>查看进程使用的指令是 <code>ps</code>，一般来说使用的参数是 <code>ps -aux</code>。</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/043.png" alt=""></p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/044.png" alt=""></p>
+<h3 id="2-2-ps-指令详解"><a href="#2-2-ps-指令详解" class="headerlink" title="2.2 ps 指令详解"></a>2.2 ps 指令详解</h3><ul>
+<li>基本语法：<code>ps –aux|grep xxx</code></li>
+<li>指令说明：<ul>
+<li>System V 展示风格</li>
+<li>USER：用户名称</li>
+<li>PID：进程号</li>
+<li>%CPU：进程占用 CPU 的百分比</li>
+<li>%MEM：进程占用物理内存的百分比</li>
+<li>VSZ：进程占用的虚拟内存大小（单位：KB）</li>
+<li>RSS：进程占用的物理内存大小（单位：KB）</li>
+<li>TT：终端名称，缩写 .</li>
+<li>STAT：进程状态，其中 S-睡眠，s-表示该进程是会话的先导进程，N-表示进程拥有比普通优先级更低的优先级，R-正在运行，D-短期等待，Z-僵死进程，T-被跟踪或者被停止等等</li>
+<li>STARTED：进程的启动时间</li>
+<li>TIME：CPU 时间，即进程使用 CPU 的总时间</li>
+<li>COMMAND：启动进程所用的命令和参数，如果过长会被截断显示</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-应用案例"><a href="#2-3-应用案例" class="headerlink" title="2.3 应用案例"></a>2.3 应用案例</h3><blockquote>
+<p>以全格式显示当前所有的进程，查看进程的父进程。</p>
+</blockquote>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/045.png" alt=""></p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/046.png" alt=""></p>
+<p>指令说明：</p>
+<ul>
+<li><code>ps -ef</code> 是以全格式显示当前所有的进程</li>
+<li>-e 显示所有进程。-f 全格式。</li>
+<li><code>ps -ef|grep xxx</code></li>
+<li>是 BSD 风格</li>
+<li>UID：用户 ID</li>
+<li>PID：进程 ID</li>
+<li>PPID：父进程 ID</li>
+<li>C：CPU 用于计算执行优先级的因子。数值越大，表明进程是 CPU 密集型运算，执行优先级会降低；数值越小，表明进程是 I/O 密集型运算，执行优先级会提高</li>
+<li>STIME：进程启动的时间</li>
+<li>TTY：完整的终端名称</li>
+<li>TIME：CPU 时间</li>
+<li>CMD：启动进程所用的命令和参数</li>
+</ul>
+<h2 id="3-终止进程-kill-和-killall"><a href="#3-终止进程-kill-和-killall" class="headerlink" title="3.终止进程 kill 和 killall"></a>3.终止进程 kill 和 killall</h2><blockquote>
+<p>若是某个进程执行一半需要停止时，或是已消耗了很大的系统资源时，此时可以考虑停止该进程。使用 kill 命令来完成此项任务。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：</p>
+<ul>
+<li><code>kill [选项] 进程号</code>（功能描述：通过进程号杀死进程）</li>
+<li><code>killall 进程名称</code>（功能描述：通过进程名称杀死进程，也支持通配符，这在系统因负载过大而变得很慢时很有用）</li>
+</ul>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-9：表示强迫进程立即停止</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>踢掉某个非法登录用户</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/047.png" alt=""></p>
+</li>
+<li><p>终止远程登录服务 sshd，在适当时候再次重启 sshd 服务</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/048.png" alt=""></p>
+</li>
+<li><p>终止多个 gedit 编辑器 【killall，通过进程名称来终止进程】</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/049.png" alt=""></p>
+</li>
+<li><p>强制杀掉一个终端</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/050.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-查看进程树-pstree"><a href="#4-查看进程树-pstree" class="headerlink" title="4.查看进程树 pstree"></a>4.查看进程树 pstree</h2><ul>
+<li><p>基本语法：<code>pstree [选项]</code></p>
+</li>
+<li><p>常用选项：</p>
+<ul>
+<li>-p：显示进程的 PID</li>
+<li>-u：显示进程的所属用户</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>以树状的形式显示进程的 pid</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/051.png" alt=""></p>
+</li>
+<li><p>以树状的形式显示进程的用户 id</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pstree -u</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-服务-Service-管理"><a href="#5-服务-Service-管理" class="headerlink" title="5.服务(Service)管理"></a>5.服务(Service)管理</h2><blockquote>
+<p>服务(service) 本质就是进程，但服务是运行在后台的，通常都会监听某个端口，等待其它程序的请求，比如(mysql , sshd 防火墙等)，因此我们又称为守护进程。</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/052.png" alt=""></p>
+</blockquote>
+<h3 id="5-1-基本使用"><a href="#5-1-基本使用" class="headerlink" title="5.1 基本使用"></a>5.1 基本使用</h3><ul>
+<li><p>基本语法：</p>
+<ul>
+<li><code>service 服务名 [start | stop | restart | reload | status]</code></li>
+<li>在 CentOS7.0 后不再使用 service，而是 systemctl</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>查看当前防火墙的状况，关闭防火墙和重启防火墙。</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/053.png" alt=""></p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/054.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-2-使用细节"><a href="#5-2-使用细节" class="headerlink" title="5.2 使用细节"></a>5.2 使用细节</h3><p>1) 关闭或者启用防火墙后，立即生效。[telnet 测试 某个端口即可]</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/055.png" alt=""></p>
+<p>2) 这种方式只是临时生效，当重启系统后，还是回归以前对服务的设置。<strong>如果希望设置某个服务自启动或关闭永久生效，要使用 chkconfig 指令</strong></p>
+<h3 id="5-3-查看服务名"><a href="#5-3-查看服务名" class="headerlink" title="5.3 查看服务名"></a>5.3 查看服务名</h3><p>方式 1：使用 <code>setup</code> =&gt; 系统服务 就可以看到</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/056.png" alt=""></p>
+<p>方式 2：/etc/init.d/服务名称</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/057.png" alt=""></p>
+<h3 id="5-4-服务的运行级别-runlevel"><a href="#5-4-服务的运行级别-runlevel" class="headerlink" title="5.4 服务的运行级别(runlevel)"></a>5.4 服务的运行级别(runlevel)</h3><p>查看或者修改默认级别： <code>vi /etc/inittab</code></p>
+<p>Linux 系统有 7 种运行级别(runlevel)：常用的是级别 3 和 5</p>
+<ul>
+<li>运行级别 0：系统停机状态，系统默认运行级别不能设为 0，否则不能正常启动</li>
+<li>运行级别 1：单用户工作状态，root 权限，用于系统维护，禁止远程登陆</li>
+<li>运行级别 2：多用户状态(没有 NFS)，不支持网络</li>
+<li>运行级别 3：完全的多用户状态(有 NFS)，登陆后进入控制台命令行模式</li>
+<li>运行级别 4：系统未使用，保留</li>
+<li>运行级别 5：X11 控制台，登陆后进入图形 GUI 模式</li>
+<li>运行级别 6：系统正常关闭并重启，默认运行级别不能设为 6，否则不能正常启动</li>
+</ul>
+<h3 id="5-5-开机的流程说明"><a href="#5-5-开机的流程说明" class="headerlink" title="5.5  开机的流程说明"></a>5.5  开机的流程说明</h3><p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/058.png" alt=""></p>
+<h3 id="5-6-chkconfig-指令"><a href="#5-6-chkconfig-指令" class="headerlink" title="5.6 chkconfig 指令"></a>5.6 chkconfig 指令</h3><blockquote>
+<p>通过 chkconfig 命令可以给每个服务的各个运行级别设置自启动/关闭。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：</p>
+<ul>
+<li><p><code>chkconfig --list|grep xxx</code> （查看所有服务）</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/059.png" alt=""></p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/060.png" alt=""></p>
+</li>
+<li><p><code>chkconfig 服务名 --list</code> （按服务名查看）</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/061.png" alt=""></p>
+</li>
+<li><p><code>chkconfig --level 5 服务名 on/off</code> （打开/关闭对应级别的服务自启动）</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/062.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>当运行级别为 5 时，关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --level 5 iptables off</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在所有运行级别下，关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig iptables off</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在所有运行级别下，开启防火墙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig iptables on</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>使用细节：<strong>chkconfig 重新设置服务后自启动或关闭，需要重启机器 reboot 才能生效</strong>。</p>
+</li>
+</ul>
+<h2 id="6-动态监控进程"><a href="#6-动态监控进程" class="headerlink" title="6.动态监控进程"></a>6.动态监控进程</h2><blockquote>
+<p>top 与 ps 命令很相似。它们都用来显示正在执行的进程。top 与 ps 最大的不同之处，在于 top 在执行一段时间可以更新正在运行的的进程。</p>
+</blockquote>
+<ul>
+<li><p>基本语法：<code>top [选项]</code></p>
+</li>
+<li><p>选项说明：</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/063.png" alt=""></p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/064.png" alt=""></p>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>监视特定用户</p>
+<p>top：输入此命令，按回车键，查看执行的进程。<br>u：然后输入“u”回车，再输入用户名，即可</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/065.png" alt=""></p>
+</li>
+<li><p>终止指定的进程</p>
+<p>top：输入此命令，按回车键，查看执行的进程。<br>k：然后输入“k”回车，再输入要结束的进程 ID 号</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/066.png" alt=""></p>
+</li>
+<li><p>指定系统状态更新的时间（每隔 10 秒自动更新， 默认是 3 秒）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -d 10</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-监控网络状态-netstat"><a href="#7-监控网络状态-netstat" class="headerlink" title="7.监控网络状态 netstat"></a>7.监控网络状态 netstat</h2><ul>
+<li><p>基本语法：<code>netstat [选项]</code></p>
+</li>
+<li><p>选项说明：</p>
+<ul>
+<li>-an：按一定顺序排列输出</li>
+<li>-p：显示哪个进程在调用</li>
+</ul>
+</li>
+<li><p>应用案例：</p>
+<ul>
+<li><p>查看系统所有的网络服务</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/067.png" alt=""></p>
+</li>
+<li><p>查看服务名为 sshd 的服务的信息</p>
+<p><img src="https://gitee.com/sunshine-zwq/blog-pic/raw/master/blogPics/2021/0201/068.png" alt=""></p>
+</li>
+<li><p>查看端口占用情况</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ant</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</div><div class="post-copyright"><blockquote><p>原文作者: zwq</p><p>原文链接: <a href="https://sunshine-zwq.gitee.io/2021/02/05/Linux学习-进程与服务/">https://sunshine-zwq.gitee.io/2021/02/05/Linux学习-进程与服务/</a></p><p>版权声明: 转载请注明出处(必须保留作者署名及链接)</p></blockquote></div><div class="tags"><a href="/tags/linux/">linux</a></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2021/02/05/Linux%E5%AD%A6%E4%B9%A0-RPM%E4%B8%8EYUM/" class="pre">Linux学习-RPM与YUM</a><a href="/2021/02/04/Linux%E5%AD%A6%E4%B9%A0-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" class="next">Linux学习-网络配置</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-进程的基本介绍"><span class="toc-text">1.进程的基本介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-显示系统执行的进程"><span class="toc-text">2.显示系统执行的进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-说明"><span class="toc-text">2.1 说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-ps-指令详解"><span class="toc-text">2.2 ps 指令详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-应用案例"><span class="toc-text">2.3 应用案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-终止进程-kill-和-killall"><span class="toc-text">3.终止进程 kill 和 killall</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-查看进程树-pstree"><span class="toc-text">4.查看进程树 pstree</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-服务-Service-管理"><span class="toc-text">5.服务(Service)管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-基本使用"><span class="toc-text">5.1 基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-使用细节"><span class="toc-text">5.2 使用细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-查看服务名"><span class="toc-text">5.3 查看服务名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-服务的运行级别-runlevel"><span class="toc-text">5.4 服务的运行级别(runlevel)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-开机的流程说明"><span class="toc-text">5.5  开机的流程说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-chkconfig-指令"><span class="toc-text">5.6 chkconfig 指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-动态监控进程"><span class="toc-text">6.动态监控进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-监控网络状态-netstat"><span class="toc-text">7.监控网络状态 netstat</span></a></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/02/07/Linux%E5%AD%A6%E4%B9%A0-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-MySQL/">Linux学习-环境安装-MySQL</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/07/Linux%E5%AD%A6%E4%B9%A0-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-Eclipse/">Linux学习-环境安装-Eclipse</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/07/Linux%E5%AD%A6%E4%B9%A0-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-Tomcat/">Linux学习-环境安装-Tomcat</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/05/Linux%E5%AD%A6%E4%B9%A0-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-JDK/">Linux学习-环境安装-JDK</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/05/Linux%E5%AD%A6%E4%B9%A0-RPM%E4%B8%8EYUM/">Linux学习-RPM与YUM</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/05/Linux%E5%AD%A6%E4%B9%A0-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E6%9C%8D%E5%8A%A1/">Linux学习-进程与服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/04/Linux%E5%AD%A6%E4%B9%A0-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/">Linux学习-网络配置</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/04/Linux%E5%AD%A6%E4%B9%A0-crond%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/">Linux学习-crond任务调度</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/02/02/Linux%E5%AD%A6%E4%B9%A0-Linux%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E3%80%81%E6%8C%82%E8%BD%BD/">Linux学习-Linux磁盘分区、挂载</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/01/30/Linux%E5%AD%A6%E4%B9%A0-%E7%BB%84%E7%AE%A1%E7%90%86%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">Linux学习-组管理和权限管理</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Dubbo/">Dubbo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">Java并发编程</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue-js/">Vue.js</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ftp/">ftp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jvm/">jvm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/Dubbo/" style="font-size: 15px;">Dubbo</a> <a href="/tags/jdk/" style="font-size: 15px;">jdk</a> <a href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" style="font-size: 15px;">并发编程</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 15px;">前端</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/json/" style="font-size: 15px;">json</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/element-ui/" style="font-size: 15px;">element-ui</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/gitee/" style="font-size: 15px;">gitee</a> <a href="/tags/github/" style="font-size: 15px;">github</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 15px;">面试</a> <a href="/tags/ftp/" style="font-size: 15px;">ftp</a> <a href="/tags/gc/" style="font-size: 15px;">gc</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/js%E6%A8%A1%E5%9D%97%E5%8C%96/" style="font-size: 15px;">js模块化</a> <a href="/tags/jvm/" style="font-size: 15px;">jvm</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 15px;">正则表达式</a> <a href="/tags/Node-js/" style="font-size: 15px;">Node.js</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15px;">工具</a> <a href="/tags/ECMAScript/" style="font-size: 15px;">ECMAScript</a> <a href="/tags/java8/" style="font-size: 15px;">java8</a> <a href="/tags/Lambda/" style="font-size: 15px;">Lambda</a> <a href="/tags/Stream/" style="font-size: 15px;">Stream</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://github.com/sunshine-zwq" title="我的Github" target="_blank">我的Github</a><ul></ul><a href="https://blog.csdn.net/zwq1105" title="我的CSDN博客" target="_blank">我的CSDN博客</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/." rel="nofollow">zwq.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/js/search.json.js?v=2.0.5"></script><div id="fullscreen-img" class="hide"><span class="close"></span></div><script type="text/javascript" src="/js/imgview.js?v=2.0.5" async></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.5" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script></body></html>
