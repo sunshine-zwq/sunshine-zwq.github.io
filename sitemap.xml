@@ -431,6 +431,27 @@
   </url>
   
   <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/js/</loc>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/js%E6%A8%A1%E5%9D%97%E5%8C%96/</loc>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/gc/</loc>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sunshine-zwq.gitee.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
@@ -439,13 +460,6 @@
   
   <url>
     <loc>https://sunshine-zwq.gitee.io/tags/linux/</loc>
-    <lastmod>2021-03-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/json/</loc>
     <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -487,6 +501,13 @@
   </url>
   
   <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/json/</loc>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sunshine-zwq.gitee.io/tags/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
@@ -501,13 +522,6 @@
   </url>
   
   <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/%E9%9D%A2%E8%AF%95/</loc>
-    <lastmod>2021-03-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sunshine-zwq.gitee.io/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
@@ -515,28 +529,14 @@
   </url>
   
   <url>
+    <loc>https://sunshine-zwq.gitee.io/tags/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sunshine-zwq.gitee.io/tags/ftp/</loc>
-    <lastmod>2021-03-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/gc/</loc>
-    <lastmod>2021-03-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/js/</loc>
-    <lastmod>2021-03-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/tags/js%E6%A8%A1%E5%9D%97%E5%8C%96/</loc>
     <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -636,6 +636,13 @@
   </url>
   
   <url>
+    <loc>https://sunshine-zwq.gitee.io/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sunshine-zwq.gitee.io/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
@@ -658,13 +665,6 @@
   
   <url>
     <loc>https://sunshine-zwq.gitee.io/categories/Vue-js/</loc>
-    <lastmod>2021-03-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunshine-zwq.gitee.io/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
