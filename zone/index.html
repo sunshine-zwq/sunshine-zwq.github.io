@@ -33,7 +33,7 @@
 	</style>
 </head>
 <body>
-	<audio autoplay="autoplay" loop="loop" preload="auto" ><source src="music/gbqq.mp3" type="audio/mpeg"></audio>
+	<audio id="bgm" autoplay="autoplay" loop="loop" preload="auto" ><source src="music/gbqq.mp3" type="audio/mpeg"></audio>
 	<div id="main">
             <div id="wrap">
                <div id="text">
@@ -201,10 +201,15 @@
     }));
 	document.addEventListener('DOMContentLoaded', function () {
 	  function audioAutoPlay() {
+	      var play = function(){
+              bgm.play();
+              document.removeEventListener("touchstart", play, false);
+          };
 		  bgm.play();
 		  document.addEventListener("WeixinJSBridgeReady", function () {
-			  bgm.play();
+			  play();
 		  }, false);
+          document.addEventListener("touchstart", play, false);
 	  }
 	  audioAutoPlay();
 	 });
