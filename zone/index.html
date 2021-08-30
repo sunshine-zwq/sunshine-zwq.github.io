@@ -187,7 +187,7 @@
     var textAnimate = eval(Jscex.compile("async",
     function() {
         var together = new Date();
-        together.setFullYear(year, (month - 1), (day - 1));
+        together.setFullYear(year, (month - 1), day);
         together.setHours(hour);
         together.setMinutes(minute);
         together.setSeconds(second);
